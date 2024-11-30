@@ -1,6 +1,6 @@
 import pygame as pg
 
-from lesson22.board import Board
+from lesson_23.board import Board
 
 pg.init()
 
@@ -19,7 +19,6 @@ RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 LIGHTGREEN = (0, 200, 200)
 
-
 # Основное окно
 window = pg.display.set_mode((width, height))
 board = Board(width, height, 200)
@@ -35,21 +34,21 @@ while True:
         if event.type == pg.MOUSEBUTTONDOWN:
             board.click(event.pos)
 
-
     # Различные игровые события
     keys = pg.key.get_pressed()
     if keys[pg.K_SPACE]:
         board.clean_2()
-    if keys[pg.K_ESCAPE] or board.check_end:
+
+    if keys[pg.K_ESCAPE]:
         pg.quit()
         exit()
-
-
-
 
     # Закрашиваем фон
     window.fill(WHITE)
     board.render(window)
+
+    #Проверяем состояние игры
+    board.check_end(window)
 
     """ Конец игровой логики  """
     # Обновляем экран
